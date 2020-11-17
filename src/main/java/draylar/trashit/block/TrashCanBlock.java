@@ -1,6 +1,5 @@
 package draylar.trashit.block;
 
-import draylar.trashit.ui.TrashCanScreenHandler;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,16 +33,6 @@ public class TrashCanBlock extends Block implements InventoryProvider {
 
     public TrashCanBlock() {
         super(FabricBlockSettings.of(Material.METAL).hardness(2.0f).nonOpaque());
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(!world.isClient && hand == Hand.MAIN_HAND) {
-            player.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS, 1, 1);
-            player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inv, p) -> new TrashCanScreenHandler(syncId, p.inventory), new LiteralText(""))) ;
-        }
-
-        return ActionResult.SUCCESS;
     }
 
     @Override
